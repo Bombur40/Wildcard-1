@@ -53,7 +53,7 @@ public class SliceAndDice : Skill {
 
     void FixedUpdate() {
         if (dashTranslationTime > 0) {
-            transform.Translate(dashDirection * Time.deltaTime * dashDistance / dashTime); // perform the dash
+            rb.velocity = dashDirection * dashDistance / dashTime; // perform the dash
         }
     }
 
