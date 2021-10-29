@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    public int maxHealth = 100;
-    public int currentHealth;
-
-    public Healthbar healthBar;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private Healthbar healthBar;
+    private int currentHealth;
+    private int goldBalance = 0;
+    private List<Item> items;
+    public bool invulnerable = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +31,49 @@ public class Player : MonoBehaviour
 
     void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        if (damage < 0) {
+            throw new ArgumentOutOfRangeException("Damage amount must be a positive value");
+        }
+
+        if (!invulnerable) {
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
+        }
+    }
+
+    public void Heal(int amount) {
+        if (amount < 0) {
+            throw new ArgumentOutOfRangeException("Healing amount must be a positive value");
+        }
+
+        currentHealth += amount;
+    }
+
+    public int GetCurrentHealth() {
+        return currentHealth;
+    }
+
+    public int GetMaxHealth() {
+        return maxHealth;
+    }
+
+    public int GetGoldBalance() {
+        return goldBalance;
+    }
+
+    public void AddGold(int amount) {
+        if (amount < 0) {
+            throw new ArgumentOutOfRangeException("Gold amount must be a positive value");
+        }
+
+        goldBalance += amount;
+    }
+
+    public void RemoveGold(int amount) {
+        if (amount < 0) {
+            throw new ArgumentOutOfRangeException("Gold amount must be a positive value");
+        }
+
+        goldBalance -= amount;
     }
 }

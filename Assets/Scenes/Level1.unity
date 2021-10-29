@@ -799,6 +799,7 @@ GameObject:
   - component: {fileID: 1421241191}
   - component: {fileID: 1421241192}
   - component: {fileID: 1421241193}
+  - component: {fileID: 1421241194}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -907,9 +908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rb: {fileID: 1421241188}
-  dashSpeed: 20
-  dashDuration: 200
-  dashCooldown: 0
+  m_MovementSmoothing: 0.025
 --- !u!60 &1421241192
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1067,8 +1066,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
   healthBar: {fileID: 15293341}
+  invulnerable: 0
+--- !u!114 &1421241194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421241187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c02a8b6e9f7fcc04a2de4b8cd37a40d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1421241193}
+  rb: {fileID: 1421241188}
+  dashDistance: 3.5
+  dashCooldown: 5
+  invulnerabilityTime: 2
+  dashTime: 0.1
 --- !u!1 &1546869027
 GameObject:
   m_ObjectHideFlags: 0
