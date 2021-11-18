@@ -49,6 +49,8 @@ public class SliceAndDice : Skill {
         timeUntilVulnerable = invulnerabilityTime;
         timeUntilAvailable = dashCooldown;
         dashTranslationTime = dashTime;
+        gameObject.GetComponent<TrailRenderer>().enabled = true;
+        TimeManager.Pause(0.04f);
     }
 
     void FixedUpdate() {
