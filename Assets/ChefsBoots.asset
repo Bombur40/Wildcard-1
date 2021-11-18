@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b941dd86f8fcb224a6bc820c948853e, type: 3}
   m_Name: ChefsBoots
   m_EditorClassIdentifier: 
-  name: 
-  description: 
+  name: Chef's Boots
+  description: Increase movement speed by 1% each
   texture: {fileID: 0}
   rarity: 0

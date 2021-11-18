@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header ("Movement")]
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private Rigidbody2D rb;
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .025f;
     private Vector2 moveDirection;
     private Vector2 m_Velocity = Vector2.zero;
 
+    [Header("Animations")]
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
         ProcessInputs();
     }
+
 
     // This update is called on a consistent fixed time which makes it better to put our move function
     void FixedUpdate()
@@ -33,6 +43,25 @@ public class PlayerMovement : MonoBehaviour
 
         //makes a vector for the movement, and normalizes it so moving diagonally won't be extra fast
         moveDirection = new Vector2(moveX, moveY).normalized;
+
+        //The following keycodes are for the animator component (Specifically the walking anim)
+        if (Input.GetKey(KeyCode.A))
+        {
+            animator.SetInteger("Direction", 3);
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            animator.SetInteger("Direction", 2);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            animator.SetInteger("Direction", 1);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            animator.SetInteger("Direction", 0);
+        }
+        animator.SetBool("IsMoving", moveDirection.magnitude > 0);
     }
 
     // Sets velocity to move the player
