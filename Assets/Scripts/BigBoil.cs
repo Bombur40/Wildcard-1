@@ -20,9 +20,15 @@ public class BigBoil : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Spawn(mousePos);
+        if (cooldown >= 5){
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Spawn(mousePos);
+                cooldown = 0;
+            }
+        }
+        else {
+            cooldown = cooldown + Time.deltaTime;
         }
     }
 }
